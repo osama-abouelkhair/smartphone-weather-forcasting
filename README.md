@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 appengine-standard-archetype
 ============================
 
@@ -42,3 +43,6 @@ to (`src/main/test/...`).  The following resources are quite useful:
 * [Junit4](http://junit.org/junit4/)
 * [Mockito](http://mockito.org/)
 * [Truth](http://google.github.io/truth/)
+=======
+# smartphone-weather-forcasting
+>>>>>>> 9c9744ec5f14db1bf403a996120dd56a6d22cf22
