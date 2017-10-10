@@ -41,11 +41,6 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>entity</name>
-			<type>2</type>
-			<location>C:/Users/osama/neon-workspace/testweatherapp/target/generated-sources/annotations/testweatherapp/entity</location>
-		</link>
-		<link>
 			<name>testweatherapp</name>
 			<type>2</type>
 			<location>C:/Users/osama/neon-workspace/testweatherapp/target/generated-sources/annotations/testweatherapp</location>

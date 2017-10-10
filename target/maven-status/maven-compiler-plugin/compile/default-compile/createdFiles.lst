@@ -1,9 +1,0 @@
-testweatherapp\entity\Record_.class
-testweatherapp\dao\RecordDAO.class
-testweatherapp\entity\SwfUser.class
-testweatherapp\entity\SwfUser_.class
-testweatherapp\entity\WeatherCond.class
-testweatherapp\entity\Record.class
-testweatherapp\entity\WeatherCond_.class
-testweatherapp\dao\SwfUserDAO.class
-testweatherapp\controller\WeatherController.class

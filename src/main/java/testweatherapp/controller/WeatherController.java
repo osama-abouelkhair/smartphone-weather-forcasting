@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.lang.annotation.Annotation;
+import java.net.URI;
 import java.text.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -146,9 +148,9 @@ public class WeatherController {
 		return new ResponseEntity(HttpStatus.NOT_FOUND);
 	}
 
-	@RequestMapping(value = "/record", produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/record")
 	@ResponseBody
-	public ModelAndView record(@RequestParam(value="latitude",required=true) float latitude, 
+	public ResponseEntity<?> record(@RequestParam(value="latitude",required=true) float latitude, 
 			@RequestParam(value="longitude",required=true) float longitude) {
 		// Gson gSon = new
 		// GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
@@ -166,7 +168,8 @@ public class WeatherController {
 		WeatherCond sunCond;
 		WeatherCond rainCond;
 		SwfUser user;
-
+		
+		URI recordURI = null;
 		user = new SwfUser();
 		//user.setId(1);
 		user.setSn("12345");
@@ -221,7 +224,9 @@ public class WeatherController {
 					record.setCity(city);
 					record.setCountry(country);
 					Record savedRecord = recordDAO.saveRecord(record);
-
+					recordURI = ServletUriComponentsBuilder
+							.fromCurrentRequest()
+							.buildAndExpand(record.getId()).toUri();
 					// model.addAttribute("status", "recorded");
 					// return "index";
 					temps.add(savedRecord);
@@ -229,14 +234,14 @@ public class WeatherController {
 			}
 			// model.addAttribute("user", savedRecord);
 		}
-		ModelAndView model = new ModelAndView();
-		model.setViewName("forward:/temperature");
-		model.addObject("temps", temps);
-		return model;
+		//ModelAndView model = new ModelAndView();
+		//model.setViewName("forward:/temperature");
+		//model.addObject("temps", temps);
+		return ResponseEntity.created(recordURI).build();
 	}
-	@RequestMapping(value = "/rest/record", produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/rest/record")
 	@ResponseBody
-	public ResponseEntity record2(@RequestParam(value="latitude",required=true) float latitude, 
+	public ResponseEntity<?> record2(@RequestParam(value="latitude",required=true) float latitude, 
 			@RequestParam(value="longitude",required=true) float longitude) {
 		// Gson gSon = new
 		// GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
@@ -255,6 +260,8 @@ public class WeatherController {
 		WeatherCond rainCond;
 		SwfUser user;
 
+		URI recordURI = null;
+		
 		user = new SwfUser();
 		//user.setId(1);
 		user.setSn("12345");
@@ -309,7 +316,9 @@ public class WeatherController {
 					record.setCity(city);
 					record.setCountry(country);
 					Record savedRecord = recordDAO.saveRecord(record);
-
+					recordURI = ServletUriComponentsBuilder
+							.fromCurrentRequest()
+							.buildAndExpand(record.getId()).toUri();
 					// model.addAttribute("status", "recorded");
 					// return "index";
 					temps.add(savedRecord);
@@ -318,7 +327,7 @@ public class WeatherController {
 			// model.addAttribute("user", savedRecord);
 		}
 		
-		return new ResponseEntity<>(temps, HttpStatus.OK);
+		return ResponseEntity.created(recordURI).build();
 	}
 
 }

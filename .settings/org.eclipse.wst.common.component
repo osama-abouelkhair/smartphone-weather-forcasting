@@ -4,7 +4,6 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/.apt_generated"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/entity"/>
         <property name="context-root" value="testweatherapp"/>
         <property name="java-output-path" value="/testweatherapp/target/testweatherapp-0.1.0-SNAPSHOT/WEB-INF/classes"/>
     </wb-module>
