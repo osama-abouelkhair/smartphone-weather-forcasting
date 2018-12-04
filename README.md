@@ -37,12 +37,7 @@ This skeleton is ready to run.
     gradle test
 
 
-As you add / modify the source code (`src/main/java/...`) it's very useful to add [unit testing](https://cloud.google.com/appengine/docs/java/tools/localunittesting)
-to (`src/main/test/...`).  The following resources are quite useful:
 
-* [Junit4](http://junit.org/junit4/)
-* [Mockito](http://mockito.org/)
-* [Truth](http://google.github.io/truth/)
-=======
 # smartphone-weather-forcasting
->>>>>>> 9c9744ec5f14db1bf403a996120dd56a6d22cf22
+
+Smart Phone weather forcast is an Android app that collect ambient temperature using smartphone sensor then sends it to the backend system to aggregate them and generate an average temperature based pn the location (latitiude and longitude of these temperatures)
